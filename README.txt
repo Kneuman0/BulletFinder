@@ -4,4 +4,4 @@ BulletFinder is a projectile calculator that does not take into account drag. Th
 Zero distance is the distance that the bullet hits exactly where the crosshairs on your scope are. This program calculates the drop of the bullet from that zero distance. (A standard zero distance is 100 yards).
 To run the program, pull program down into your IDE, navigate to ProjectileCalcMain and run it.
 
-Curtiousy of MarsOne
+Curtiousy of MarsTwo
