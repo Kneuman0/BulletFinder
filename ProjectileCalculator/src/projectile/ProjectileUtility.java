@@ -3,6 +3,7 @@ package projectile;
 public class ProjectileUtility {
 	
 	private final double METERS_PER_YARD = .9144;
+	private final double YARDS_PER_METER = 1/METERS_PER_YARD;
 	private final double METERS_PER_FOOT = .3048;
 	private final double ACCELERATION_FROM_GRAVITY = 9.81;
 	
@@ -23,6 +24,23 @@ public class ProjectileUtility {
     	}
 		
 		return answerInMeters;
+	}
+	
+	/**
+	 * must pass radio button for yards under calc distance text box
+	 * @param doNotConvert
+	 * @param measurement
+	 * @return
+	 */
+	public double convertMetersToYards(boolean doConvert, double measurement){
+		double answerInYards;
+		if(doConvert){
+			answerInYards = this.YARDS_PER_METER*measurement;
+    	}else{
+    		answerInYards = measurement;
+    	}
+		
+		return answerInYards;
 	}
 	
 	/**
