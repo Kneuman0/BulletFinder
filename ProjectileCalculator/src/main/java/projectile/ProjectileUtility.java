@@ -77,13 +77,12 @@ public class ProjectileUtility {
 	}
 	
 	public String getUnitsInMetersOrYards(boolean metersSelected){
-		String units = "";
 		if(metersSelected){
-			units = "meters";
+			return "meters";
 		}else{
-			units = "yards";
+			return "yards";
 		}
-		return units;
+		
 	}
 
 }
