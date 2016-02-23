@@ -1,4 +1,4 @@
-package projectile;
+package biz.personalAcademics.projectile;
 
 import java.text.DecimalFormat;
 

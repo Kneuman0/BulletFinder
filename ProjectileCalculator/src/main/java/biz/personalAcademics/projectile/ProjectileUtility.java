@@ -1,4 +1,4 @@
-package projectile;
+package biz.personalAcademics.projectile;
 
 public class ProjectileUtility {
 	

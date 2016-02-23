@@ -1,11 +1,11 @@
-package projectileTest;
+package biz.personalAcademics.projectileTest;
 
 import static org.junit.Assert.*;
 import static org.hamcrest.CoreMatchers.*;
 
 import org.junit.Test;
 
-import projectile.ProjectileUtility;
+import biz.personalAcademics.projectile.ProjectileUtility;
 
 public class ProjectileUtilityTest {
 
