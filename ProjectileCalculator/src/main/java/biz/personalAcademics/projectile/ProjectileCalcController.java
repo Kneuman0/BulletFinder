@@ -81,8 +81,8 @@ public class ProjectileCalcController {
     	double bulletHeight = util.getHeightOfBulletInInches(calcDistanceM, muzzleVelocityM, theta);
     	// sets the label indicating the time it takes the bullet to travel the user specified distance
     	timeLabel.setText(String.format("It will take %.2f miliseconds to travel %.1f %s", timeElapsed, 
-    			util.convertMetersToYards(calcDistYrdsTog.isSelected(), calcDistanceM), 
-    			util.getUnitsInMetersOrYards(calcDistMtrsTog.isSelected())));
+    	util.convertMetersToYards(calcDistYrdsTog.isSelected(), calcDistanceM), 
+    	util.getUnitsInMetersOrYards(calcDistMtrsTog.isSelected())));
     	// sets the label telling the user the height of the specified distance
     	answerLabel.setText(String.format("%.2f inches relative to zeroed distance", bulletHeight));
     	
