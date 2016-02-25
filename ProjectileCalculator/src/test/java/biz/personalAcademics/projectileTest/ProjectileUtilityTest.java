@@ -2,6 +2,9 @@ package biz.personalAcademics.projectileTest;
 
 import static org.junit.Assert.*;
 import static org.hamcrest.CoreMatchers.*;
+
+import org.junit.After;
+import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
@@ -10,9 +13,40 @@ import biz.personalAcademics.projectile.InvalidMeasureException;
 import biz.personalAcademics.projectile.ProjectileUtility;
 
 public class ProjectileUtilityTest {
+	
+	boolean thetaFail = true;
+	boolean timeFail = true;
 
 	@Rule
 	public ExpectedException invalidInput = ExpectedException.none();
+	
+	@Before
+	public void testPreliminaryCalculationsForThetaAndTime(){
+		String theta = String.format("%.8f", ProjectileUtility.getThetaUsingZero(91.44, 723.9));
+		if(theta.equals("0.00085589")){
+			thetaFail = false;
+		}else{
+			fail(String.format("Theta did not pass: should be %s, but was %s", "0.00085589", theta));
+			thetaFail = true;
+		}
+		
+		if(thetaFail){
+			fail("Theta did not pass therefor time will not pass");
+		}else{
+			
+		double thetaDouble = ProjectileUtility.getThetaUsingZero(91.44, 723.9);
+		String timeTest = String.format("%.4f", ProjectileUtility.getTime(182.88, 723.9, thetaDouble));
+			if(timeTest.equals("252.6317")){
+				timeFail = false;
+			}else{
+				timeFail = false;
+				fail(String.format("time did not pass: should be %s, but was %s", "252.6317", timeTest));
+			}
+		}
+		
+		
+		
+	}
 	
 	@Test
 	public void testConversionFromYardsToMeters() {
@@ -62,6 +96,18 @@ public class ProjectileUtilityTest {
 		ProjectileUtility.convertYardsToMeters(true, "letters");
 	}
 	
+		
+	@Test
+	public void testHeightAtCalcDistance(){
+		if(thetaFail || timeFail){
+			fail("Theta or time did not pass, therefore height will not pass");
+		}else{
+			double theta = ProjectileUtility.getThetaUsingZero(91.44, 723.9);
+			String height = String.format("%.4f", ProjectileUtility.getHeightOfBulletInInches(182.88, 723.9, theta));
+			assertThat("-6.1624", is(height));
+			
+		}
+	}
 	
 
 }
