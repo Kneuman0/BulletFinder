@@ -35,7 +35,7 @@ public class ProjectileUtilityTest {
 		}
 		
 		if(thetaFail){
-			fail("Theta did not pass therefor time will not pass");
+			fail("Theta did not pass therefore time will not pass");
 		}else{
 			
 		double thetaDouble = ProjectileUtility.getThetaUsingZero(91.44, 723.9);
