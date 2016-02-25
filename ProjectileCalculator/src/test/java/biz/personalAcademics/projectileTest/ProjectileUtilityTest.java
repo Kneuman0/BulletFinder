@@ -2,8 +2,6 @@ package biz.personalAcademics.projectileTest;
 
 import static org.junit.Assert.*;
 import static org.hamcrest.CoreMatchers.*;
-
-import org.hamcrest.core.StringContains;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
@@ -44,7 +42,7 @@ public class ProjectileUtilityTest {
 	public void testForInvalidUserInputFeetTrue(){
 		ProjectileUtility projectile = new ProjectileUtility();
 		invalidInput.expect(InvalidMeasureException.class);
-		invalidInput.expectMessage(StringContains.containsString("letters"));
+		invalidInput.expectMessage(containsString("letters"));
 		projectile.convertFeetToMeters(true, "letters");
 	}
 	
@@ -52,7 +50,7 @@ public class ProjectileUtilityTest {
 	public void testForInvalidUserInputFeetFalse(){
 		ProjectileUtility projectile = new ProjectileUtility();
 		invalidInput.expect(InvalidMeasureException.class);
-		invalidInput.expectMessage(StringContains.containsString("letters"));
+		invalidInput.expectMessage(containsString("letters"));
 		projectile.convertFeetToMeters(false, "letters");
 	}
 	
@@ -60,7 +58,7 @@ public class ProjectileUtilityTest {
 	public void testForInvalidUserInputYardsToMetersFalse(){
 		ProjectileUtility projectile = new ProjectileUtility();
 		invalidInput.expect(InvalidMeasureException.class);
-		invalidInput.expectMessage(StringContains.containsString("letters"));
+		invalidInput.expectMessage(containsString("letters"));
 		projectile.convertYardsToMeters(false, "letters");
 	}
 	
@@ -68,7 +66,7 @@ public class ProjectileUtilityTest {
 	public void testForInvalidUserInputYardsToMetersTrue(){
 		ProjectileUtility projectile = new ProjectileUtility();
 		invalidInput.expect(InvalidMeasureException.class);
-		invalidInput.expectMessage(StringContains.containsString("letters"));
+		invalidInput.expectMessage(containsString("letters"));
 		projectile.convertYardsToMeters(true, "letters");
 	}
 	

@@ -56,11 +56,9 @@ public class ProjectileCalcController {
     @FXML
     private Label timeLabel;
     
-    ProjectileUtility util;
     DecimalFormat inches;
     
     public void initialize(){
-    	util = new ProjectileUtility();
     	inches = new DecimalFormat("0.000");
     }
     
@@ -68,21 +66,21 @@ public class ProjectileCalcController {
     
     public void calcButtonListener(){
     	// convert shooters zero distance to meters
-    	double zeroDistanceM = util.convertYardsToMeters(zeroMtrsTog.isSelected(), zeroDistText.getText());
+    	double zeroDistanceM = ProjectileUtility.convertYardsToMeters(zeroMtrsTog.isSelected(), zeroDistText.getText());
     	// convert muzzle velocity to meters per second
-    	double muzzleVelocityM = util.convertFeetToMeters(muzzleMtrsPSecTog.isSelected(), muzzleVelocText.getText());
+    	double muzzleVelocityM = ProjectileUtility.convertFeetToMeters(muzzleMtrsPSecTog.isSelected(), muzzleVelocText.getText());
     	// convert user's specified distance to meters
-    	double calcDistanceM = util.convertYardsToMeters(calcDistMtrsTog.isSelected(), calcDistText.getText());
+    	double calcDistanceM = ProjectileUtility.convertYardsToMeters(calcDistMtrsTog.isSelected(), calcDistText.getText());
     	// angle of muzzle
-    	double theta = util.getThetaUsingZero(zeroDistanceM, muzzleVelocityM);
+    	double theta = ProjectileUtility.getThetaUsingZero(zeroDistanceM, muzzleVelocityM);
     	// time it takes for bullet to reach zeroed distance
-    	double timeElapsed = util.getTime(calcDistanceM, muzzleVelocityM, theta);
+    	double timeElapsed = ProjectileUtility.getTime(calcDistanceM, muzzleVelocityM, theta);
     	// height of bullet at user's 
-    	double bulletHeight = util.getHeightOfBulletInInches(calcDistanceM, muzzleVelocityM, theta);
+    	double bulletHeight = ProjectileUtility.getHeightOfBulletInInches(calcDistanceM, muzzleVelocityM, theta);
     	// sets the label indicating the time it takes the bullet to travel the user specified distance
     	timeLabel.setText(String.format("It will take %.2f miliseconds to travel %.1f %s", timeElapsed, 
-    	util.convertMetersToYards(calcDistYrdsTog.isSelected(), calcDistanceM), 
-    	util.getUnitsInMetersOrYards(calcDistMtrsTog.isSelected())));
+    	ProjectileUtility.convertMetersToYards(calcDistYrdsTog.isSelected(), calcDistanceM), 
+    	ProjectileUtility.getUnitsInMetersOrYards(calcDistMtrsTog.isSelected())));
     	// sets the label telling the user the height of the specified distance
     	answerLabel.setText(String.format("%.2f inches relative to zeroed distance", bulletHeight));
     	
