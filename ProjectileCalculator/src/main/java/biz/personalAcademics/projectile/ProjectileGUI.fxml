@@ -6,7 +6,7 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="projectile.ProjectileCalcController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="biz.personalAcademics.projectile.ProjectileCalcController">
    <children>
       <Button fx:id="calculateButton" layoutX="227.0" layoutY="321.0" mnemonicParsing="false" onAction="#calcButtonListener" prefHeight="47.0" prefWidth="147.0" text="Calculate" />
       <Label alignment="CENTER" contentDisplay="CENTER" layoutX="174.0" layoutY="22.0" prefHeight="37.0" prefWidth="254.0" text="Bullet Finder 1.0">
@@ -56,6 +56,6 @@
             <Label layoutX="8.0" layoutY="49.0" prefHeight="75.0" prefWidth="185.0" text="- This program assumes the shooter has zeroed his or her weapon at some distance (usually 100 yards)" wrapText="true" />
          </children>
       </Pane>
-      <Label fx:id="timeLabel" layoutX="18.0" layoutY="321.0" prefHeight="65.0" prefWidth="185.0" textFill="#07430d" />
+      <Label fx:id="timeLabel" layoutX="18.0" layoutY="321.0" prefHeight="65.0" prefWidth="185.0" textFill="#07430d" wrapText="true" />
    </children>
 </AnchorPane>
