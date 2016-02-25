@@ -16,58 +16,50 @@ public class ProjectileUtilityTest {
 	
 	@Test
 	public void testConversionFromYardsToMeters() {
-		ProjectileUtility projectile = new ProjectileUtility();
-		assertThat(projectile.convertYardsToMeters(false, "2"), is(2 * .9144));
+		assertThat(ProjectileUtility.convertYardsToMeters(false, "2"), is(2 * .9144));
 	}
 	
 	@Test
 	public void testConversionFromMetersToYards(){
-		ProjectileUtility projectile = new ProjectileUtility();
-		assertThat(projectile.convertMetersToYards(true, 2), is(2/(double).9144));
+		assertThat(ProjectileUtility.convertMetersToYards(true, 2), is(2/(double).9144));
 	}
 	
 	@Test
 	public void testConversionFromFeetToMeters(){
-		ProjectileUtility projectile = new ProjectileUtility();
-		assertThat(projectile.convertFeetToMeters(false, "10"), is(10 * .3048));
+		assertThat(ProjectileUtility.convertFeetToMeters(false, "10"), is(10 * .3048));
 	}
 	
 	@Test
 	public void testUnitsLabel(){
-		ProjectileUtility projectile = new ProjectileUtility();
-		assertThat(projectile.getUnitsInMetersOrYards(false), is("yards"));
+		assertThat(ProjectileUtility.getUnitsInMetersOrYards(false), is("yards"));
 	}
 	
 	@Test
 	public void testForInvalidUserInputFeetTrue(){
-		ProjectileUtility projectile = new ProjectileUtility();
 		invalidInput.expect(InvalidMeasureException.class);
 		invalidInput.expectMessage(containsString("letters"));
-		projectile.convertFeetToMeters(true, "letters");
+		ProjectileUtility.convertFeetToMeters(true, "letters");
 	}
 	
 	@Test
 	public void testForInvalidUserInputFeetFalse(){
-		ProjectileUtility projectile = new ProjectileUtility();
 		invalidInput.expect(InvalidMeasureException.class);
 		invalidInput.expectMessage(containsString("letters"));
-		projectile.convertFeetToMeters(false, "letters");
+		ProjectileUtility.convertFeetToMeters(false, "letters");
 	}
 	
 	@Test
 	public void testForInvalidUserInputYardsToMetersFalse(){
-		ProjectileUtility projectile = new ProjectileUtility();
 		invalidInput.expect(InvalidMeasureException.class);
 		invalidInput.expectMessage(containsString("letters"));
-		projectile.convertYardsToMeters(false, "letters");
+		ProjectileUtility.convertYardsToMeters(false, "letters");
 	}
 	
 	@Test
 	public void testForInvalidUserInputYardsToMetersTrue(){
-		ProjectileUtility projectile = new ProjectileUtility();
 		invalidInput.expect(InvalidMeasureException.class);
 		invalidInput.expectMessage(containsString("letters"));
-		projectile.convertYardsToMeters(true, "letters");
+		ProjectileUtility.convertYardsToMeters(true, "letters");
 	}
 	
 	
