@@ -77,11 +77,25 @@ public class ProjectileUtility {
 		return answerInMeters;
 	}
 
+	/**
+	 * Calculates theta using the distance the user zeroed the firearm at
+	 * @param zeroDistance
+	 * @param muzzleVelocity
+	 * @return
+	 */
 	public static double getThetaUsingZero(double zeroDistance, double muzzleVelocity) {
 		return (Math.asin((ACCELERATION_FROM_GRAVITY * zeroDistance)
 				/ (muzzleVelocity * muzzleVelocity))) / 2;
 	}
 
+	/**
+	 * Calculates the time it takes for the projective to make it to the distance 
+	 * the user wants to calculate drop for
+	 * @param calcDistance
+	 * @param muzzleVelocity
+	 * @param theta
+	 * @return
+	 */
 	public static double getTime(double calcDistance, double muzzleVelocity,
 			double theta) {
 		double timeInSeconds = calcDistance
@@ -89,6 +103,13 @@ public class ProjectileUtility {
 		return timeInSeconds * 1000;
 	}
 
+	/**
+	 * Calculates drop of bullet relative to zero distance
+	 * @param calcDistance
+	 * @param muzzleVelocity
+	 * @param theta
+	 * @return
+	 */
 	public static double getHeightOfBulletInInches(double calcDistance,
 			double muzzleVelocity, double theta) {
 		double heightInMeters = (calcDistance * Math.tan(theta))
