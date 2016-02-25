@@ -157,7 +157,7 @@ public class ProjectileUtilityTest {
 	/**
 	 * Method MUST execute after theta and time have been tested
 	 */
-	@Test
+	@After
 	public void testHeightAtCalcDistance(){
 		if(thetaFail || timeFail){
 			fail("Theta or time did not pass, therefore height will not pass");
