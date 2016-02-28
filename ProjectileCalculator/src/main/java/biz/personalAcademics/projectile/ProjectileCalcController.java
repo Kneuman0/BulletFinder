@@ -56,6 +56,9 @@ public class ProjectileCalcController {
     @FXML
     private Label timeLabel;
     
+    @FXML
+    private Label userWarningLabel;
+    
     DecimalFormat inches;
     
     public void initialize(){
@@ -65,6 +68,11 @@ public class ProjectileCalcController {
     
     
     public void calcButtonListener(){
+    	answerLabel.setText("");
+    	timeLabel.setText("");
+    	if(ensureAllEntriesLogged()){
+    		return;
+    	}
     	// convert shooters zero distance to meters
     	double zeroDistanceM = ProjectileUtility.convertYardsToMeters(zeroMtrsTog.isSelected(), zeroDistText.getText());
     	// convert muzzle velocity to meters per second
@@ -84,6 +92,26 @@ public class ProjectileCalcController {
     	// sets the label telling the user the height of the specified distance
     	answerLabel.setText(String.format("%.2f inches relative to zeroed distance", bulletHeight));
     	
+    }
+    
+    public boolean ensureAllEntriesLogged(){
+    	boolean incompleteForm = false;
+    	if(muzzleVelocText.getText().equals("")){
+    		userWarningLabel.setText("Please enter a muzzle velocity");
+    		incompleteForm = true;
+    	}
+    	
+    	if(zeroDistText.getText().equals("")){
+    		userWarningLabel.setText("Please enter a zero distance");
+    		incompleteForm = true;
+    	}
+    	
+    	if(calcDistText.getText().equals("")){
+    		userWarningLabel.setText("Please enter a distance to calculate for");
+    		incompleteForm = true;
+    	}
+    	
+    	return incompleteForm;
     }
 
 }
