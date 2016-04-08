@@ -21,6 +21,7 @@ public class ProjectileUtilityTest {
 	public ExpectedException invalidInput = ExpectedException.none();
 	
 	
+	
 	/**
 	 * Tests time and theta in the same method to be sure they are executed sequentially
 	 */

@@ -70,21 +70,47 @@ public class ProjectileCalcController {
     public void calcButtonListener(){
     	answerLabel.setText("");
     	timeLabel.setText("");
+    	userWarningLabel.setText("");
     	if(ensureAllEntriesLogged()){
     		return;
     	}
-    	// convert shooters zero distance to meters
-    	double zeroDistanceM = ProjectileUtility.convertYardsToMeters(zeroMtrsTog.isSelected(), zeroDistText.getText());
-    	// convert muzzle velocity to meters per second
-    	double muzzleVelocityM = ProjectileUtility.convertFeetToMeters(muzzleMtrsPSecTog.isSelected(), muzzleVelocText.getText());
+    	
     	// convert user's specified distance to meters
-    	double calcDistanceM = ProjectileUtility.convertYardsToMeters(calcDistMtrsTog.isSelected(), calcDistText.getText());
-    	// angle of muzzle
-    	double theta = ProjectileUtility.getThetaUsingZero(zeroDistanceM, muzzleVelocityM);
-    	// time it takes for bullet to reach zeroed distance
-    	double timeElapsed = ProjectileUtility.getTime(calcDistanceM, muzzleVelocityM, theta);
-    	// height of bullet at user's 
-    	double bulletHeight = ProjectileUtility.getHeightOfBulletInInches(calcDistanceM, muzzleVelocityM, theta);
+		double calcDistanceM = 0;
+		// time it takes for bullet to reach zeroed distance
+		double timeElapsed = 0;
+		// height of bullet at user's 
+		double bulletHeight = 0;
+		try {
+			// convert shooters zero distance to meters
+			double zeroDistanceM = ProjectileUtility.convertYardsToMeters(zeroMtrsTog.isSelected(), zeroDistText.getText());
+			// convert muzzle velocity to meters per second
+			double muzzleVelocityM = ProjectileUtility.convertFeetToMeters(muzzleMtrsPSecTog.isSelected(), muzzleVelocText.getText());
+			calcDistanceM = ProjectileUtility.convertYardsToMeters(calcDistMtrsTog.isSelected(), calcDistText.getText());
+			// angle of muzzle
+			double theta = ProjectileUtility.getThetaUsingZero(zeroDistanceM, muzzleVelocityM);
+			timeElapsed = ProjectileUtility.getTime(calcDistanceM, muzzleVelocityM, theta);
+			bulletHeight = ProjectileUtility.getHeightOfBulletInInches(calcDistanceM, muzzleVelocityM, theta);
+		} catch (InvalidMeasureException e) {
+			userWarningLabel.setText(e.getMessage());
+			return;
+		}
+		
+		// Checks to see if user number is too big to avoid double overflow
+		try {
+			CheckIfMeaurementSizeIsTooBig();
+		} catch (MeasureTooBigException e) {
+			userWarningLabel.setText(e.getMessage());
+			return;
+		}
+		
+		try {
+			checkForImpossibleSituations(timeElapsed, bulletHeight);
+		} catch (ArithmeticException e) {
+			userWarningLabel.setText("You have entered impossible parameters");
+			return;
+		}
+		
     	// sets the label indicating the time it takes the bullet to travel the user specified distance
     	timeLabel.setText(String.format("It will take %.2f miliseconds to travel %.1f %s", timeElapsed, 
     	ProjectileUtility.convertMetersToYards(calcDistYrdsTog.isSelected(), calcDistanceM), 
@@ -94,7 +120,7 @@ public class ProjectileCalcController {
     	
     }
     
-    public boolean ensureAllEntriesLogged(){
+    private boolean ensureAllEntriesLogged(){
     	boolean incompleteForm = false;
     	if(muzzleVelocText.getText().equals("")){
     		userWarningLabel.setText("Please enter a muzzle velocity");
@@ -113,5 +139,31 @@ public class ProjectileCalcController {
     	
     	return incompleteForm;
     }
+    
+    private void CheckIfMeaurementSizeIsTooBig() throws MeasureTooBigException{
+    	if(muzzleVelocText.getText().length() > 6){
+    		throw new MeasureTooBigException(muzzleVelocText.getText());
+    	}
+    	
+    	if(zeroDistText.getText().length() > 6){
+    		throw new MeasureTooBigException(zeroDistText.getText());
+    	}
+    	
+    	if(calcDistText.getText().length() > 6){
+    		throw new MeasureTooBigException(calcDistText.getText());
+    	}
+    }
+    
+    private void checkForImpossibleSituations(double time, double height) throws ArithmeticException{
+    	if(Double.isNaN(time) || Double.isInfinite(time)){
+    		throw new ArithmeticException();
+    	}
+    	
+    	if(Double.isNaN(height) || Double.isInfinite(height)){
+    		throw new ArithmeticException();
+    	}
+    }
+    
+    
 
 }
