@@ -8,6 +8,13 @@ import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
+import javafx.scene.image.Image;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundImage;
+import javafx.scene.layout.BackgroundPosition;
+import javafx.scene.layout.BackgroundRepeat;
+import javafx.scene.layout.BackgroundSize;
 
 public class ProjectileCalcController {
 
@@ -16,6 +23,9 @@ public class ProjectileCalcController {
 
     @FXML
     private RadioButton muzzleMtrsPSecTog;
+
+    @FXML
+    private Label userWarningLabel;
 
     @FXML
     private RadioButton calcDistYrdsTog;
@@ -52,17 +62,18 @@ public class ProjectileCalcController {
 
     @FXML
     private ToggleGroup muzzleVelocity;
-    
+
     @FXML
     private Label timeLabel;
     
     @FXML
-    private Label userWarningLabel;
+    private AnchorPane anchorPane;
     
     DecimalFormat inches;
     
     public void initialize(){
     	inches = new DecimalFormat("0.000");
+    	setBackgroundImage();
     }
     
     
@@ -162,6 +173,15 @@ public class ProjectileCalcController {
     	if(Double.isNaN(height) || Double.isInfinite(height)){
     		throw new ArithmeticException();
     	}
+    }
+    
+    private void setBackgroundImage(){
+    	Image logo = new Image(ProjectileCalcMain.class.getResourceAsStream("/resources/diamondPlate.jpg"));
+    	BackgroundSize logoSize = new BackgroundSize(600, 400, false, false, true, true);
+		 BackgroundImage image = new BackgroundImage(logo, BackgroundRepeat.NO_REPEAT, 
+				 BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, logoSize);
+		 Background background = new Background(image);
+		 anchorPane.setBackground(background);
     }
     
     

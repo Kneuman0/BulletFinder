@@ -12,7 +12,7 @@ public class ProjectileCalcMain extends Application {
 	public void start(Stage stage) {
 	Parent parent = null;
 	try {
-		parent = FXMLLoader.load(getClass().getResource("ProjectileGUI.fxml"));
+		parent = FXMLLoader.load(getClass().getResource("/resources/ProjectileGUI.fxml"));
 	} catch (IOException e) {
 		e.printStackTrace();
 		System.out.println("error in parent declaration");
