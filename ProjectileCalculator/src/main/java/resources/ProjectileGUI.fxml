@@ -9,48 +9,114 @@
 <AnchorPane fx:id="anchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="biz.personalAcademics.projectile.ProjectileCalcController">
    <children>
       <Button fx:id="calculateButton" layoutX="227.0" layoutY="321.0" mnemonicParsing="false" onAction="#calcButtonListener" prefHeight="47.0" prefWidth="147.0" text="Calculate" />
-      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="174.0" layoutY="22.0" prefHeight="37.0" prefWidth="254.0" text="Bullet Finder 1.0" textFill="#b6f801">
+      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="174.0" layoutY="22.0" prefHeight="37.0" prefWidth="254.0" text="Bullet Finder 1.0" textFill="#d4ff00">
          <font>
             <Font name="Blackadder ITC" size="34.0" />
          </font>
+         <effect>
+            <DropShadow color="WHITE" spread="0.08" />
+         </effect>
       </Label>
-      <Label layoutX="18.0" layoutY="145.0" text="Enter Zero Distance Here" textFill="#cbf802" />
+      <Label layoutX="18.0" layoutY="145.0" text="Enter Zero Distance Here" textFill="#e1ff01">
+         <effect>
+            <DropShadow color="WHITE" spread="0.08" />
+         </effect>
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font></Label>
       <TextField fx:id="zeroDistText" layoutX="18.0" layoutY="160.0" />
-      <RadioButton fx:id="zeroYrdsTog" layoutX="18.0" layoutY="184.0" mnemonicParsing="false" selected="true" text="Yards" textFill="#effc00">
+      <RadioButton fx:id="zeroYrdsTog" layoutX="18.0" layoutY="184.0" mnemonicParsing="false" selected="true" text="Yards" textFill="#eeff00">
          <toggleGroup>
             <ToggleGroup fx:id="zeroDistance" />
          </toggleGroup>
+         <effect>
+            <DropShadow color="WHITE" spread="0.09" />
+         </effect>
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
       </RadioButton>
-      <RadioButton fx:id="zeroMtrsTog" layoutX="105.0" layoutY="184.0" mnemonicParsing="false" text="Meters" textFill="#e8f802" toggleGroup="$zeroDistance" />
-      <Label layoutX="443.0" layoutY="145.0" text="Enter Muzzle Velocity Here" textFill="#d7f801" />
+      <RadioButton fx:id="zeroMtrsTog" layoutX="105.0" layoutY="184.0" mnemonicParsing="false" text="Meters" textFill="#eeff00" toggleGroup="$zeroDistance">
+         <effect>
+            <DropShadow color="WHITE" spread="0.09" />
+         </effect>
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font></RadioButton>
+      <Label layoutX="443.0" layoutY="145.0" text="Enter Muzzle Velocity Here" textFill="#e2ff02">
+         <effect>
+            <DropShadow color="WHITE" spread="0.08" />
+         </effect>
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font></Label>
       <TextField fx:id="muzzleVelocText" layoutX="440.0" layoutY="160.0" />
-      <RadioButton fx:id="muzzleFtPSecTog" layoutX="440.0" layoutY="184.0" mnemonicParsing="false" selected="true" text="ft/sec" textFill="#cefc03">
+      <RadioButton fx:id="muzzleFtPSecTog" layoutX="440.0" layoutY="184.0" mnemonicParsing="false" selected="true" text="ft/sec" textFill="#ddff01">
          <toggleGroup>
             <ToggleGroup fx:id="muzzleVelocity" />
          </toggleGroup>
+         <effect>
+            <DropShadow color="WHITE" spread="0.08" />
+         </effect>
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
       </RadioButton>
-      <RadioButton fx:id="muzzleMtrsPSecTog" layoutX="507.0" layoutY="184.0" mnemonicParsing="false" text="meters/sec" textFill="#cafc03" toggleGroup="$muzzleVelocity" />
+      <RadioButton fx:id="muzzleMtrsPSecTog" layoutX="507.0" layoutY="184.0" mnemonicParsing="false" text="meters/sec" textFill="#e5ff00" toggleGroup="$muzzleVelocity">
+         <effect>
+            <DropShadow color="WHITE" spread="0.08" />
+         </effect>
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font></RadioButton>
       <Label layoutX="15.0" layoutY="53.0" prefHeight="57.0" prefWidth="156.0" text="*Enter the distance you have zeroed your weapon at" textFill="#f50202" wrapText="true">
          <font>
             <Font name="System Bold" size="12.0" />
-         </font></Label>
+         </font>
+         <effect>
+            <DropShadow color="WHITE" spread="0.81" />
+         </effect></Label>
       <Label layoutX="445.0" layoutY="11.0" prefHeight="124.0" prefWidth="156.0" text="*Enter the muzzle velocity of your weapon with your particular ammunition for best results. (enter muzzle velocity as stated by manufacturer otherwise)" textFill="#fc0303" wrapText="true">
          <font>
             <Font name="System Bold" size="12.0" />
-         </font></Label>
+         </font>
+         <effect>
+            <DropShadow color="WHITE" spread="0.8" />
+         </effect></Label>
       <Label layoutX="448.0" layoutY="368.0" text="Created by: Kyle Neuman" textFill="#03e8f8" />
-      <Label layoutX="18.0" layoutY="250.0" text="Enter The distance you'd like to calculate for" textFill="#f8f402" />
+      <Label layoutX="18.0" layoutY="250.0" text="Enter The distance you'd like to calculate for" textFill="#d4ff00">
+         <effect>
+            <DropShadow color="WHITE" spread="0.09" />
+         </effect>
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font></Label>
       <TextField fx:id="calcDistText" layoutX="18.0" layoutY="267.0" onAction="#calcButtonListener" prefHeight="25.0" prefWidth="156.0" />
-      <RadioButton fx:id="calcDistYrdsTog" layoutX="18.0" layoutY="292.0" mnemonicParsing="false" selected="true" text="Yards" textFill="#cff803">
+      <RadioButton fx:id="calcDistYrdsTog" layoutX="18.0" layoutY="292.0" mnemonicParsing="false" selected="true" text="Yards" textFill="#ddff00">
          <toggleGroup>
             <ToggleGroup fx:id="calcDistance" />
          </toggleGroup>
+         <effect>
+            <DropShadow color="WHITE" spread="0.08" />
+         </effect>
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
       </RadioButton>
-      <RadioButton fx:id="calcDistMtrsTog" layoutX="113.0" layoutY="292.0" mnemonicParsing="false" text="Meters" textFill="#fcf701" toggleGroup="$calcDistance" />
-      <Label fx:id="answerLabel" layoutX="340.0" layoutY="239.0" prefHeight="75.0" prefWidth="254.0" textFill="#02fc02" wrapText="true">
+      <RadioButton fx:id="calcDistMtrsTog" layoutX="113.0" layoutY="292.0" mnemonicParsing="false" text="Meters" textFill="#e1ff00" toggleGroup="$calcDistance">
+         <effect>
+            <DropShadow color="WHITE" spread="0.08" />
+         </effect>
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font></RadioButton>
+      <Label fx:id="answerLabel" layoutX="340.0" layoutY="239.0" prefHeight="75.0" prefWidth="254.0" textFill="#3c00ff" wrapText="true">
          <font>
             <Font name="Cambria" size="18.0" />
          </font>
+         <effect>
+            <DropShadow color="WHITE" spread="0.9" />
+         </effect>
       </Label>
       <Pane layoutX="200.0" layoutY="93.0" prefHeight="124.0" prefWidth="200.0" style="-fx-border-color: grey;">
          <children>
@@ -58,14 +124,26 @@
                <font>
                   <Font size="22.0" />
                </font>
+               <effect>
+                  <DropShadow color="WHITE" spread="0.73" />
+               </effect>
             </Label>
-            <Label layoutX="8.0" layoutY="49.0" prefHeight="75.0" prefWidth="185.0" text="This program assumes the shooter has zeroed his or her weapon at some distance (usually 100 yards)" textFill="#d1ff02" wrapText="true" />
+            <Label layoutX="8.0" layoutY="49.0" prefHeight="75.0" prefWidth="185.0" text="This program assumes the shooter has zeroed his or her weapon at some distance (usually 100 yards)" textFill="#d4ff00" wrapText="true">
+               <effect>
+                  <DropShadow color="WHITE" spread="0.1" />
+               </effect>
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font></Label>
          </children>
       </Pane>
-      <Label fx:id="timeLabel" layoutX="22.0" layoutY="320.0" prefHeight="65.0" prefWidth="185.0" style="-fx-opacity: 20;" textFill="#8f7bff" wrapText="true">
+      <Label fx:id="timeLabel" layoutX="22.0" layoutY="320.0" prefHeight="65.0" prefWidth="185.0" style="-fx-opacity: 20;" textFill="#2600ff" wrapText="true">
          <font>
             <Font name="System Bold" size="12.0" />
-         </font></Label>
+         </font>
+         <effect>
+            <DropShadow color="WHITE" spread="0.8" />
+         </effect></Label>
       <Label fx:id="userWarningLabel" alignment="CENTER" layoutX="18.0" layoutY="215.0" prefHeight="32.0" prefWidth="561.0" textFill="WHITE" wrapText="true">
          <font>
             <Font name="System Bold" size="12.0" />
