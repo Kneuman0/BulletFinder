@@ -1,7 +1,7 @@
 package biz.personalAcademics.projectile;
 
+import java.io.File;
 import java.text.DecimalFormat;
-
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -15,6 +15,8 @@ import javafx.scene.layout.BackgroundImage;
 import javafx.scene.layout.BackgroundPosition;
 import javafx.scene.layout.BackgroundRepeat;
 import javafx.scene.layout.BackgroundSize;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 
 public class ProjectileCalcController {
 
@@ -129,6 +131,8 @@ public class ProjectileCalcController {
     	// sets the label telling the user the height of the specified distance
     	answerLabel.setText(String.format("%.2f inches relative to zeroed distance", bulletHeight));
     	
+//    	playSound();
+    	
     }
     
     private boolean ensureAllEntriesLogged(){
@@ -182,6 +186,27 @@ public class ProjectileCalcController {
 				 BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, logoSize);
 		 Background background = new Background(image);
 		 anchorPane.setBackground(background);
+    }
+    
+    private void playSound(){
+    	
+    	Media fart = null;
+    	
+		try {
+			
+			fart = new Media(ProjectileCalcMain.class.getResource("/resources/TacobellEruption.mp3").toString());
+						
+		} catch (Exception e) {
+			File currentJavaJarFile = new File(ProjectileCalcMain.class
+					.getProtectionDomain().getCodeSource().getLocation().getPath());
+			String currentJavaJarFilePath = currentJavaJarFile.getAbsolutePath();
+			String currentRootDirectoryPath = currentJavaJarFilePath.replace(
+					currentJavaJarFile.getName(), "").replace("\\", "/");
+			System.out.println(currentRootDirectoryPath + "TacobellEruption.mp3");
+			fart = new Media("File:/" + currentRootDirectoryPath +	"TacobellEruption.mp3");
+		}
+    	MediaPlayer player = new MediaPlayer(fart);
+    	player.play();
     }
     
     
