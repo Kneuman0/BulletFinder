@@ -30,8 +30,14 @@
          </toggleGroup>
       </RadioButton>
       <RadioButton fx:id="muzzleMtrsPSecTog" layoutX="507.0" layoutY="184.0" mnemonicParsing="false" text="meters/sec" textFill="#cafc03" toggleGroup="$muzzleVelocity" />
-      <Label layoutX="15.0" layoutY="53.0" prefHeight="57.0" prefWidth="156.0" text="*Enter the distance you have zeroed your weapon at" textFill="#f50202" wrapText="true" />
-      <Label layoutX="445.0" layoutY="11.0" prefHeight="124.0" prefWidth="156.0" text="*Enter the muzzle velocity of your weapon with your particular ammunition for best results. (enter muzzle velocity as stated by manufacturer otherwise)" textFill="#fc0303" wrapText="true" />
+      <Label layoutX="15.0" layoutY="53.0" prefHeight="57.0" prefWidth="156.0" text="*Enter the distance you have zeroed your weapon at" textFill="#f50202" wrapText="true">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font></Label>
+      <Label layoutX="445.0" layoutY="11.0" prefHeight="124.0" prefWidth="156.0" text="*Enter the muzzle velocity of your weapon with your particular ammunition for best results. (enter muzzle velocity as stated by manufacturer otherwise)" textFill="#fc0303" wrapText="true">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font></Label>
       <Label layoutX="448.0" layoutY="368.0" text="Created by: Kyle Neuman" textFill="#03e8f8" />
       <Label layoutX="18.0" layoutY="250.0" text="Enter The distance you'd like to calculate for" textFill="#f8f402" />
       <TextField fx:id="calcDistText" layoutX="18.0" layoutY="267.0" onAction="#calcButtonListener" prefHeight="25.0" prefWidth="156.0" />
