@@ -1,9 +1,7 @@
 package biz.personalAcademics.projectile;
 
-import java.io.File;
 import java.text.DecimalFormat;
 
-import biz.personalAcademics.lib.pathClasses.PathGetter;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -17,8 +15,6 @@ import javafx.scene.layout.BackgroundImage;
 import javafx.scene.layout.BackgroundPosition;
 import javafx.scene.layout.BackgroundRepeat;
 import javafx.scene.layout.BackgroundSize;
-import javafx.scene.media.Media;
-import javafx.scene.media.MediaPlayer;
 
 public class ProjectileCalcController {
 
@@ -78,13 +74,11 @@ public class ProjectileCalcController {
     public void initialize(){
     	inches = new DecimalFormat("0.000");
     	setBackgroundImage();
-    	playSound();
     }
     
     
     
     public void calcButtonListener(){
-    	playSound();
     	answerLabel.setText("");
     	timeLabel.setText("");
     	userWarningLabel.setText("");
@@ -191,23 +185,5 @@ public class ProjectileCalcController {
 		 Background background = new Background(image);
 		 anchorPane.setBackground(background);
     }
-    
-    private void playSound(){
-    	
-    	Media fart = null;
-    	
-		try {
-			
-			fart = new Media(ProjectileCalcMain.class.getResource("/resources/TacobellEruption.mp3").toString());
-						
-		} catch (Exception e) {
-			PathGetter path = new PathGetter(new ProjectileCalcMain());
-			fart = new Media(path.getFileAbsoluteSubfolderURIString() +	"TacobellEruption.mp3");
-		}
-    	MediaPlayer player = new MediaPlayer(fart);
-    	player.play();
-    }
-    
-    
 
 }
