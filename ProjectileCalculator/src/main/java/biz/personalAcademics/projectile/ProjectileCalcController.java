@@ -82,6 +82,7 @@ public class ProjectileCalcController {
     	answerLabel.setText("");
     	timeLabel.setText("");
     	userWarningLabel.setText("");
+    	
     	if(ensureAllEntriesLogged()){
     		return;
     	}
@@ -128,8 +129,6 @@ public class ProjectileCalcController {
     	ProjectileUtility.getUnitsInMetersOrYards(calcDistMtrsTog.isSelected())));
     	// sets the label telling the user the height of the specified distance
     	answerLabel.setText(String.format("%.2f inches relative to zeroed distance", bulletHeight));
-    	
-//    	playSound();
     	
     }
     
