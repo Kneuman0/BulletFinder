@@ -19,52 +19,34 @@ import javafx.scene.layout.BackgroundSize;
 public class ProjectileCalcController {
 
     @FXML
-    private RadioButton zeroYrdsTog;
+    private RadioButton 
+    		zeroYrdsTog,
+    		zeroMtrsTog,
+    		muzzleMtrsPSecTog,
+    		calcDistYrdsTog,
+    		muzzleFtPSecTog,
+    		calcDistMtrsTog;
 
     @FXML
-    private RadioButton muzzleMtrsPSecTog;
+    private Label 
+    		userWarningLabel,
+    		answerLabel,
+    		timeLabel;
+    
+    @FXML
+    private TextField 
+    		muzzleVelocText,
+    		zeroDistText,
+    		calcDistText;
 
     @FXML
-    private Label userWarningLabel;
-
-    @FXML
-    private RadioButton calcDistYrdsTog;
-
+    private ToggleGroup 
+    		zeroDistance,
+    		muzzleVelocity,
+    		calcDistance;
+    
     @FXML
     private Button calculateButton;
-
-    @FXML
-    private Label answerLabel;
-
-    @FXML
-    private TextField muzzleVelocText;
-
-    @FXML
-    private TextField zeroDistText;
-
-    @FXML
-    private ToggleGroup zeroDistance;
-
-    @FXML
-    private ToggleGroup calcDistance;
-
-    @FXML
-    private RadioButton muzzleFtPSecTog;
-
-    @FXML
-    private RadioButton calcDistMtrsTog;
-
-    @FXML
-    private TextField calcDistText;
-
-    @FXML
-    private RadioButton zeroMtrsTog;
-
-    @FXML
-    private ToggleGroup muzzleVelocity;
-
-    @FXML
-    private Label timeLabel;
     
     @FXML
     private AnchorPane anchorPane;
