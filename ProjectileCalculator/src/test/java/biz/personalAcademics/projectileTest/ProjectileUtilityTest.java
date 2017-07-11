@@ -9,7 +9,7 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
 
-import biz.personalAcademics.projectile.InvalidMeasureException;
+import biz.personalAcademics.excetions.InvalidMeasureException;
 import biz.personalAcademics.projectile.ProjectileUtility;
 
 public class ProjectileUtilityTest {

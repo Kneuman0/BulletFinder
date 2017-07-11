@@ -1,4 +1,4 @@
-package biz.personalAcademics.projectile;
+package biz.personalAcademics.excetions;
 
 @SuppressWarnings("serial")
 public class MeasureTooBigException extends RuntimeException{

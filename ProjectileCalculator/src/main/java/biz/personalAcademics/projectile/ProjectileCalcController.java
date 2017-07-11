@@ -2,6 +2,8 @@ package biz.personalAcademics.projectile;
 
 import java.text.DecimalFormat;
 
+import biz.personalAcademics.excetions.InvalidMeasureException;
+import biz.personalAcademics.excetions.MeasureTooBigException;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -69,24 +71,22 @@ public class ProjectileCalcController {
     		return;
     	}
     	
-    	// convert user's specified distance to meters
-		double calcDistanceM = 0;
-		// time it takes for bullet to reach zeroed distance
-		double timeElapsed = 0;
-		// height of bullet at user's 
-		double bulletHeight = 0;
+		
+		BulletProjectile bullet = null;
 		try {
 			// convert shooters zero distance to meters
-			double zeroDistanceM = ProjectileUtility.convertYardsToMeters(zeroMtrsTog.isSelected(), zeroDistText.getText());
+			double zeroDistanceM = Projectile.convertYardsToMeters(zeroMtrsTog.isSelected(), zeroDistText.getText());
 			// convert muzzle velocity to meters per second
-			double muzzleVelocityM = ProjectileUtility.convertFeetToMeters(muzzleMtrsPSecTog.isSelected(), muzzleVelocText.getText());
-			calcDistanceM = ProjectileUtility.convertYardsToMeters(calcDistMtrsTog.isSelected(), calcDistText.getText());
+			double muzzleVelocityM = Projectile.convertFeetToMeters(muzzleMtrsPSecTog.isSelected(), muzzleVelocText.getText());
+			double calcDistanceM = Projectile.convertYardsToMeters(calcDistMtrsTog.isSelected(), calcDistText.getText());
 			// angle of muzzle
-			double theta = ProjectileUtility.getThetaUsingZero(zeroDistanceM, muzzleVelocityM);
-			timeElapsed = ProjectileUtility.getTime(calcDistanceM, muzzleVelocityM, theta);
-			bulletHeight = ProjectileUtility.getHeightOfBulletInInches(calcDistanceM, muzzleVelocityM, theta);
+			
+			bullet = new BulletProjectile(calcDistanceM, zeroDistanceM, muzzleVelocityM);
 		} catch (InvalidMeasureException e) {
 			userWarningLabel.setText(e.getMessage());
+			return;
+		} catch (ArithmeticException error){
+			userWarningLabel.setText("You have entered impossible parameters");
 			return;
 		}
 		
@@ -97,20 +97,13 @@ public class ProjectileCalcController {
 			userWarningLabel.setText(e.getMessage());
 			return;
 		}
-		
-		try {
-			checkForImpossibleSituations(timeElapsed, bulletHeight);
-		} catch (ArithmeticException e) {
-			userWarningLabel.setText("You have entered impossible parameters");
-			return;
-		}
-		
+			
     	// sets the label indicating the time it takes the bullet to travel the user specified distance
-    	timeLabel.setText(String.format("It will take %.2f miliseconds to travel %.1f %s", timeElapsed, 
-    	ProjectileUtility.convertMetersToYards(calcDistYrdsTog.isSelected(), calcDistanceM), 
-    	ProjectileUtility.getUnitsInMetersOrYards(calcDistMtrsTog.isSelected())));
+    	timeLabel.setText(String.format("It will take %.2f miliseconds to travel %.1f %s", bullet.getFlightTime(), 
+    	Projectile.convertMetersToYards(calcDistYrdsTog.isSelected(), bullet.getCalcDistance()), 
+    	BulletProjectile.getUnitsInMetersOrYards(calcDistMtrsTog.isSelected())));
     	// sets the label telling the user the height of the specified distance
-    	answerLabel.setText(String.format("%.2f inches relative to zeroed distance", bulletHeight));
+    	answerLabel.setText(String.format("%.2f inches relative to zeroed distance", bullet.getBulletHeightInches()));
     	
     }
     
@@ -148,15 +141,7 @@ public class ProjectileCalcController {
     	}
     }
     
-    private void checkForImpossibleSituations(double time, double height) throws ArithmeticException{
-    	if(Double.isNaN(time) || Double.isInfinite(time)){
-    		throw new ArithmeticException();
-    	}
-    	
-    	if(Double.isNaN(height) || Double.isInfinite(height)){
-    		throw new ArithmeticException();
-    	}
-    }
+
     
     private void setBackgroundImage(){
     	Image logo = new Image(ProjectileCalcMain.class.getResourceAsStream("/resources/diamondPlate.jpg"));
