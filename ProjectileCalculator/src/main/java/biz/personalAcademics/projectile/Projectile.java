@@ -1,12 +1,71 @@
 package biz.personalAcademics.projectile;
 
-public class ProjectileUtility {
+import biz.personalAcademics.excetions.InvalidMeasureException;
 
-	private static final double METERS_PER_YARD = .9144;
-	private static final double YARDS_PER_METER = 1 / METERS_PER_YARD;
-	private static final double METERS_PER_FOOT = .3048;
-	private static final double ACCELERATION_FROM_GRAVITY = 9.81;
+public abstract class Projectile {
+	
+	/*
+	 * All instance fields will be stored as metric units (meters)
+	 */
+	protected double calcDistance, zeroDistance, muzzleVelocity;
+	
+	/*
+	 * Constants
+	 */
+	public static final double METERS_PER_YARD = .9144;
+	public static final double YARDS_PER_METER = 1 / METERS_PER_YARD;
+	public static final double METERS_PER_FOOT = .3048;
+	public static final double ACCELERATION_FROM_GRAVITY = 9.81;
+	
+	/**
+	 * All parameters are expected to be metric. Use utility methods for conversion
+	 */
+	public Projectile(double calcDistanceM, double zeroDistanceM, double muzzleVelocityM){
+		this.calcDistance = calcDistanceM;
+		this.zeroDistance = zeroDistanceM;
+		this.muzzleVelocity = muzzleVelocityM;
+	}
 
+	public double getCalcDistance() {
+		return calcDistance;
+	}
+
+	public void setCalcDistance(double calcDistance) {
+		this.calcDistance = calcDistance;
+	}
+
+	public double getZeroDistance() {
+		return zeroDistance;
+	}
+
+	public void setZeroDistance(double zeroDistance) {
+		this.zeroDistance = zeroDistance;
+	}
+
+	public double getMuzzleVelocity() {
+		return muzzleVelocity;
+	}
+
+	public void setMuzzleVelocity(double muzzleVelocity) {
+		this.muzzleVelocity = muzzleVelocity;
+	}
+
+	public static double getMetersPerYard() {
+		return METERS_PER_YARD;
+	}
+
+	public static double getYardsPerMeter() {
+		return YARDS_PER_METER;
+	}
+
+	public static double getMetersPerFoot() {
+		return METERS_PER_FOOT;
+	}
+
+	public static double getAccelerationFromGravity() {
+		return ACCELERATION_FROM_GRAVITY;
+	}
+	
 	/**
 	 * accepts a boolean indicating where the toggle for meters or yards is
 	 * selected. Converts measurement to meters depending on boolean
@@ -33,7 +92,7 @@ public class ProjectileUtility {
 
 		return answerInMeters;
 	}
-
+	
 	/**
 	 * must pass radio button for yards under calc distance text box
 	 * 
@@ -51,7 +110,7 @@ public class ProjectileUtility {
 
 		return answerInYards;
 	}
-
+	
 	/**
 	 * accepts a boolean indicating where the toggle for meters or feet is
 	 * selected. Converts measurement to meters depending on boolean
@@ -75,57 +134,6 @@ public class ProjectileUtility {
 		}
 
 		return answerInMeters;
-	}
-
-	/**
-	 * Calculates theta using the distance the user zeroed the firearm at
-	 * @param zeroDistance
-	 * @param muzzleVelocity
-	 * @return
-	 */
-	public static double getThetaUsingZero(double zeroDistance, double muzzleVelocity) {
-		return (Math.asin((ACCELERATION_FROM_GRAVITY * zeroDistance)
-				/ (muzzleVelocity * muzzleVelocity))) / 2;
-	}
-
-	/**
-	 * Calculates the time it takes for the projective to make it to the distance 
-	 * the user wants to calculate drop for
-	 * @param calcDistance
-	 * @param muzzleVelocity
-	 * @param theta
-	 * @return
-	 */
-	public static double getTime(double calcDistance, double muzzleVelocity,
-			double theta) {
-		double timeInSeconds = calcDistance
-				/ (muzzleVelocity * Math.cos(theta));
-		return timeInSeconds * 1000;
-	}
-
-	/**
-	 * Calculates drop of bullet relative to zero distance
-	 * @param calcDistance
-	 * @param muzzleVelocity
-	 * @param theta
-	 * @return
-	 */
-	public static double getHeightOfBulletInInches(double calcDistance,
-			double muzzleVelocity, double theta) {
-		double heightInMeters = (calcDistance * Math.tan(theta))
-				- (ACCELERATION_FROM_GRAVITY / 2)
-				* ((calcDistance * calcDistance) / ((muzzleVelocity * muzzleVelocity) * (Math
-						.cos(theta) * Math.cos(theta))));
-		return (heightInMeters / METERS_PER_FOOT) * 12;
-	}
-
-	public static String getUnitsInMetersOrYards(boolean metersSelected) {
-		if (metersSelected) {
-			return "meters";
-		} else {
-			return "yards";
-		}
-
 	}
 
 }
