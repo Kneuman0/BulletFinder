@@ -10,12 +10,14 @@ import org.junit.Test;
 import org.junit.rules.ExpectedException;
 
 import biz.personalAcademics.excetions.InvalidMeasureException;
-import biz.personalAcademics.projectile.ProjectileUtility;
+import biz.personalAcademics.projectile.BulletProjectile;
+import biz.personalAcademics.projectile.Projectile;
 
 public class ProjectileUtilityTest {
 	
 	boolean thetaFail = true;
 	boolean timeFail = true;
+	BulletProjectile bullet = new BulletProjectile(182.88, 91.44, 723.9);
 
 	@Rule
 	public ExpectedException invalidInput = ExpectedException.none();
@@ -27,7 +29,7 @@ public class ProjectileUtilityTest {
 	 */
 	@Before
 	public void testPreliminaryCalculationsForThetaAndTime(){
-		String theta = String.format("%.8f", ProjectileUtility.getThetaUsingZero(91.44, 723.9));
+		String theta = String.format("%.8f", bullet.getTheta());
 		if(theta.equals("0.00085589")){
 			thetaFail = false;
 		}else{
@@ -39,8 +41,8 @@ public class ProjectileUtilityTest {
 			fail("Theta did not pass therefore time will not pass");
 		}else{
 			
-		double thetaDouble = ProjectileUtility.getThetaUsingZero(91.44, 723.9);
-		String timeTest = String.format("%.4f", ProjectileUtility.getTime(182.88, 723.9, thetaDouble));
+		double thetaDouble = bullet.getTheta();
+		String timeTest = String.format("%.4f", bullet.getFlightTime());
 			if(timeTest.equals("252.6317")){
 				timeFail = false;
 			}else{
@@ -55,7 +57,7 @@ public class ProjectileUtilityTest {
 	 */
 	@Test
 	public void testConversionFromYardsToMeters() {
-		assertThat(ProjectileUtility.convertYardsToMeters(false, "2"), is(2 * .9144));
+		assertThat(Projectile.convertYardsToMeters(false, "2"), is(2 * .9144));
 	}
 	
 	/**
@@ -63,7 +65,7 @@ public class ProjectileUtilityTest {
 	 */
 	@Test
 	public void testConversionFromYardsToYards(){
-		assertThat(ProjectileUtility.convertYardsToMeters(true, "2"), is(2.0));
+		assertThat(Projectile.convertYardsToMeters(true, "2"), is(2.0));
 	}
 	
 	/**
@@ -71,7 +73,7 @@ public class ProjectileUtilityTest {
 	 */
 	@Test
 	public void testConversionFromMetersToYards(){
-		assertThat(ProjectileUtility.convertMetersToYards(true, 2), is(2/(double).9144));
+		assertThat(Projectile.convertMetersToYards(true, 2), is(2/(double).9144));
 	}
 	
 	/**
@@ -79,7 +81,7 @@ public class ProjectileUtilityTest {
 	 */
 	@Test
 	public void testConversionFromMetersToMeters(){
-		assertThat(ProjectileUtility.convertMetersToYards(false, 2), is(2.0));
+		assertThat(Projectile.convertMetersToYards(false, 2), is(2.0));
 	}
 	
 	/**
@@ -87,7 +89,7 @@ public class ProjectileUtilityTest {
 	 */
 	@Test
 	public void testConversionFromFeetToMeters(){
-		assertThat(ProjectileUtility.convertFeetToMeters(false, "10"), is(10 * .3048));
+		assertThat(Projectile.convertFeetToMeters(false, "10"), is(10 * .3048));
 	}
 	
 	/**
@@ -95,7 +97,7 @@ public class ProjectileUtilityTest {
 	 */
 	@Test
 	public void testConversionFromFeetToFeet(){
-		assertThat(ProjectileUtility.convertFeetToMeters(true, "10"), is(10.0));
+		assertThat(Projectile.convertFeetToMeters(true, "10"), is(10.0));
 	}
 	
 	/**
@@ -103,7 +105,7 @@ public class ProjectileUtilityTest {
 	 */
 	@Test
 	public void testUnitsLabelYards(){
-		assertThat(ProjectileUtility.getUnitsInMetersOrYards(false), is("yards"));
+		assertThat(BulletProjectile.getUnitsInMetersOrYards(false), is("yards"));
 	}
 	
 	/**
@@ -111,7 +113,7 @@ public class ProjectileUtilityTest {
 	 */
 	@Test
 	public void testUnitsLabelMeters(){
-		assertThat(ProjectileUtility.getUnitsInMetersOrYards(true), is("meters"));
+		assertThat(BulletProjectile.getUnitsInMetersOrYards(true), is("meters"));
 	}
 	
 	/**
@@ -121,7 +123,7 @@ public class ProjectileUtilityTest {
 	public void testForInvalidUserInputFeetTrue(){
 		invalidInput.expect(InvalidMeasureException.class);
 		invalidInput.expectMessage(containsString("letters"));
-		ProjectileUtility.convertFeetToMeters(true, "letters");
+		Projectile.convertFeetToMeters(true, "letters");
 	}
 	
 	/**
@@ -131,7 +133,7 @@ public class ProjectileUtilityTest {
 	public void testForInvalidUserInputFeetFalse(){
 		invalidInput.expect(InvalidMeasureException.class);
 		invalidInput.expectMessage(containsString("letters"));
-		ProjectileUtility.convertFeetToMeters(false, "letters");
+		Projectile.convertFeetToMeters(false, "letters");
 	}
 	
 	/**
@@ -141,7 +143,7 @@ public class ProjectileUtilityTest {
 	public void testForInvalidUserInputYardsToMetersFalse(){
 		invalidInput.expect(InvalidMeasureException.class);
 		invalidInput.expectMessage(containsString("letters"));
-		ProjectileUtility.convertYardsToMeters(false, "letters");
+		Projectile.convertYardsToMeters(false, "letters");
 	}
 	
 	/**
@@ -151,7 +153,7 @@ public class ProjectileUtilityTest {
 	public void testForInvalidUserInputYardsToMetersTrue(){
 		invalidInput.expect(InvalidMeasureException.class);
 		invalidInput.expectMessage(containsString("letters"));
-		ProjectileUtility.convertYardsToMeters(true, "letters");
+		Projectile.convertYardsToMeters(true, "letters");
 	}
 	
 		
@@ -163,8 +165,7 @@ public class ProjectileUtilityTest {
 		if(thetaFail || timeFail){
 			fail("Theta or time did not pass, therefore height will not pass");
 		}else{
-			double theta = ProjectileUtility.getThetaUsingZero(91.44, 723.9);
-			String height = String.format("%.4f", ProjectileUtility.getHeightOfBulletInInches(182.88, 723.9, theta));
+			String height = String.format("%.4f", bullet.getBulletHeightInches());
 			assertThat("-6.1624", is(height));
 			
 		}
