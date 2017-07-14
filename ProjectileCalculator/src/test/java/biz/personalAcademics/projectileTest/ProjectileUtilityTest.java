@@ -10,8 +10,8 @@ import org.junit.Test;
 import org.junit.rules.ExpectedException;
 
 import biz.personalAcademics.excetions.InvalidMeasureException;
-import biz.personalAcademics.mainapp.BulletProjectile;
-import biz.personalAcademics.mainapp.Projectile;
+import biz.personalAcademics.projectile.Projectile;
+import biz.personalAcademics.projectile.bullet.BulletProjectile;
 
 public class ProjectileUtilityTest {
 	

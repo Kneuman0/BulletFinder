@@ -1,5 +1,7 @@
 package biz.personalAcademics.projectile.bullet;
 
+import biz.personalAcademics.projectile.Projectile;
+
 public class BulletProjectile extends Projectile {
 
 	/**
