@@ -1,4 +1,4 @@
-package biz.personalAcademics.projectile;
+package biz.personalAcademics.mainapp;
 
 import java.io.IOException;
 

@@ -1,9 +1,11 @@
-package biz.personalAcademics.projectile;
+package biz.personalAcademics.mainapp;
 
 import java.text.DecimalFormat;
 
 import biz.personalAcademics.excetions.InvalidMeasureException;
 import biz.personalAcademics.excetions.MeasureTooBigException;
+import biz.personalAcademics.projectile.Projectile;
+import biz.personalAcademics.projectile.bullet.BulletProjectile;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;

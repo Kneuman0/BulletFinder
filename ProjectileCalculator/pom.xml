@@ -48,4 +48,11 @@
 		</dependency>
     </dependencies>
   </build>
+  <dependencies>
+  	<dependency>
+  		<groupId>Projectile</groupId>
+  		<artifactId>Projectile</artifactId>
+  		<version>0.0.1-SNAPSHOT</version>
+  	</dependency>
+  </dependencies>
 </project>

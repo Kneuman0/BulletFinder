@@ -1,4 +1,4 @@
-package biz.personalAcademics.projectile;
+package biz.personalAcademics.projectile.bullet;
 
 public class BulletProjectile extends Projectile {
 
