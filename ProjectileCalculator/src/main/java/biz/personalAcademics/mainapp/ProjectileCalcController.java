@@ -6,6 +6,7 @@ import biz.personalAcademics.excetions.InvalidMeasureException;
 import biz.personalAcademics.excetions.MeasureTooBigException;
 import biz.personalAcademics.projectile.Projectile;
 import biz.personalAcademics.projectile.bullet.BulletProjectile;
+import biz.ui.controller.utils.IPopupController;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -19,9 +20,12 @@ import javafx.scene.layout.BackgroundImage;
 import javafx.scene.layout.BackgroundPosition;
 import javafx.scene.layout.BackgroundRepeat;
 import javafx.scene.layout.BackgroundSize;
+import javafx.stage.Stage;
 
-public class ProjectileCalcController {
-
+public class ProjectileCalcController implements IPopupController{
+	
+	Stage stage;
+	
     @FXML
     private RadioButton 
     		zeroYrdsTog,
@@ -153,5 +157,12 @@ public class ProjectileCalcController {
 		 Background background = new Background(image);
 		 anchorPane.setBackground(background);
     }
+
+
+
+	@Override
+	public void setStage(Stage stage) {
+		this.stage = stage;
+	}
 
 }
